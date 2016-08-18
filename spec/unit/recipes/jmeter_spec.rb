@@ -17,7 +17,12 @@ describe 'taurus::jmeter' do
   end
 
   it 'downloads jmeter libraries' do
-    expect(chef_run).to put_ark('lib')
+    expect(chef_run).to dump_ark('jmeter-plugin-Standard')
+    expect(chef_run).to dump_ark('jmeter-plugin-Extras')
+    expect(chef_run).to dump_ark('jmeter-plugin-ExtrasLibs')
+    expect(chef_run).to dump_ark('jmeter-plugin-WebDriver')
+    expect(chef_run).to dump_ark('jmeter-plugin-XMPP')
+    expect(chef_run).to dump_ark('jmeter-plugin-Hadoop')
   end
 
   it 'sets bin/jmeter perms to 755' do
@@ -34,5 +39,13 @@ describe 'taurus::jmeter' do
     expect(chef_run).to create_file('/opt/taurus/tools/jmeter/bin/ApacheJMeter.jar').with(
       mode: '0755'
     )
+  end
+
+  it 'creates jmeter-service directory' do
+    expect(chef_run).to create_directory('/var/log/jmeter-service')
+  end
+
+  it 'creates runit_service[jmeter-service]' do
+    expect(chef_run).to enable_runit_service('jmeter-service')
   end
 end
