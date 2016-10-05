@@ -1,6 +1,18 @@
 taurus CHANGELOG
 ==============================
 
+# 3.0.1
+
+Fix knife-supermarket requirement for single version constraint for a particular cookbook.
+
+# 3.0.0
+
+Added firewall_support, added runit down scripts, moved taurus config to global, moved jmeter
+binary to /usr/local, change master host enable/disable to not nil is_master.  Added pip install
+optional parameter for different index-host.
+
+Added pins for Gemfile to support functional unit testing.  Add pins for yum to support yum-epel.
+
 # 2.6.0
 
 Add locustio server support via runit. Updated documentation.
